@@ -26,7 +26,6 @@
     body { font-family: 'Inter', sans-serif; color: var(--txt); background: #fff; overflow-x: hidden; }
     a { text-decoration: none; color: inherit; }
 
-    /* ── BOTÕES ── */
     .btn-primary {
       background: var(--azul); color: #fff; padding: 13px 30px;
       border-radius: 8px; font-weight: 600; font-size: 15px;
@@ -50,17 +49,13 @@
       background: #fff; position: sticky; top: 0; z-index: 200;
       box-shadow: 0 2px 12px rgba(26,125,200,.08);
     }
-    /* Faixa colorida topo */
     nav::before {
       content: '';
       position: absolute; top: 0; left: 0; right: 0; height: 4px;
       background: linear-gradient(90deg, var(--azul) 25%, var(--amarelo) 25% 50%, var(--vermelho) 50% 75%, var(--verde) 75%);
     }
     .nav-logo { display: flex; align-items: center; gap: 10px; }
-    .nav-logo-icon {
-      width: 38px; height: 38px;
-      display: flex; align-items: center; justify-content: center;
-    }
+    .nav-logo-icon { width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; }
     .nav-logo-icon img { width: 100%; height: 100%; object-fit: contain; }
     .nav-logo span { font-family: 'Sora', sans-serif; font-weight: 700; font-size: 16px; color: var(--azul); }
     .nav-links { display: flex; align-items: center; gap: 30px; }
@@ -80,32 +75,21 @@
       box-shadow: 0 8px 28px rgba(0,0,0,.1);
       min-width: 220px; padding: 8px 0; z-index: 300;
     }
-    .nav-sub a {
-      display: block; padding: 10px 18px;
-      font-size: 14px; color: var(--txt2); transition: .15s;
-    }
+    .nav-sub a { display: block; padding: 10px 18px; font-size: 14px; color: var(--txt2); transition: .15s; }
     .nav-sub a:hover { background: var(--azul-bg); color: var(--azul); }
     .nav-sub .divider { height: 1px; background: var(--cinza-bd); margin: 6px 0; }
-    .nav-cta {
-      background: var(--azul); color: #fff;
-      padding: 9px 22px; border-radius: 7px;
-      font-size: 14px; font-weight: 600; transition: .2s;
-    }
-    .nav-cta:hover { background: #145fa0; }
 
     /* ── HERO ── */
     .hero {
       background: linear-gradient(135deg, #0d4d82 0%, #1a7dc8 60%, #2a9de8 100%);
-      padding: 72px 6% 0;
+      padding: 72px 6% 64px;
       display: grid; grid-template-columns: 1fr 1fr;
-      gap: 40px; align-items: end; min-height: 560px;
+      gap: 40px; align-items: center;
       position: relative; overflow: hidden;
     }
-    /* Decoração geométrica com as 4 cores */
     .hero::after {
       content: '';
-      position: absolute; bottom: 0; right: 0;
-      width: 320px; height: 6px;
+      position: absolute; bottom: 0; left: 0; right: 0; height: 5px;
       background: linear-gradient(90deg, var(--azul) 25%, var(--amarelo) 25% 50%, var(--vermelho) 50% 75%, var(--verde) 75%);
     }
     .hero::before {
@@ -114,7 +98,7 @@
                         radial-gradient(circle at 85% 15%, rgba(255,255,255,.05) 0%, transparent 40%);
       pointer-events: none;
     }
-    .hero-content { position: relative; z-index: 1; padding-bottom: 64px; }
+    .hero-content { position: relative; z-index: 1; }
     .hero-badge {
       display: inline-flex; align-items: center; gap: 8px;
       background: rgba(255,255,255,.13); border: 1px solid rgba(255,255,255,.3);
@@ -127,24 +111,97 @@
       animation: pulse 1.8s infinite;
     }
     @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
-
     .hero h1 {
       font-family: 'Sora', sans-serif; font-size: 42px; font-weight: 800;
       color: #fff; line-height: 1.18; margin-bottom: 18px;
     }
     .hero h1 span { color: var(--amarelo); }
-    .hero-sub { color: rgba(255,255,255,.85); font-size: 16px; line-height: 1.75; margin-bottom: 34px; max-width: 460px; }
-    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
-
-    .hero-img { align-self: end; position: relative; z-index: 1; }
-    .hero-img-placeholder {
-      width: 100%; max-width: 520px; height: 380px;
-      background: rgba(255,255,255,.08); border-radius: 14px 14px 0 0;
-      border: 1px solid rgba(255,255,255,.15);
+    .hero-sub { color: rgba(255,255,255,.85); font-size: 16px; line-height: 1.75; max-width: 460px; }
+    .hero-logo-side {
       display: flex; align-items: center; justify-content: center;
-      flex-direction: column; gap: 12px; color: rgba(255,255,255,.45);
+      position: relative; z-index: 1;
     }
-    .hero-img-placeholder svg { width: 40px; height: 40px; opacity: .4; }
+    .hero-logo-side img {
+      max-width: 280px; width: 100%;
+      filter: brightness(0) invert(1);
+      opacity: .15;
+    }
+
+    /* ── CARROSSEL ── */
+    .carousel-section { background: #fff; position: relative; }
+    .carousel-wrapper { position: relative; width: 100%; height: 480px; overflow: hidden; }
+    .carousel-track {
+      display: flex; height: 100%;
+      transition: transform .65s cubic-bezier(.4,0,.2,1);
+    }
+    .carousel-slide {
+      min-width: 100%; height: 100%;
+      position: relative; overflow: hidden; flex-shrink: 0;
+    }
+    .carousel-slide:nth-child(1) { background: linear-gradient(135deg, #104e80, #1e8de0); }
+    .carousel-slide:nth-child(2) { background: linear-gradient(135deg, #005520, #009938); }
+    .carousel-slide:nth-child(3) { background: linear-gradient(135deg, #8a4800, #f5a800); }
+    .carousel-slide:nth-child(4) { background: linear-gradient(135deg, #7a0e0e, #e82222); }
+    .carousel-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    /* overlay gradiente para legenda */
+    .carousel-caption {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 36px 6% 40px;
+      background: linear-gradient(to top, rgba(0,0,0,.65) 0%, rgba(0,0,0,.2) 70%, transparent 100%);
+      color: #fff;
+    }
+    .carousel-caption-tag {
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .14em; color: var(--amarelo); margin-bottom: 8px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .carousel-caption-tag::before { content:''; width:18px; height:2px; background:var(--amarelo); border-radius:2px; }
+    .carousel-caption h3 {
+      font-family: 'Sora', sans-serif; font-size: 28px; font-weight: 800; line-height: 1.2;
+    }
+    .carousel-caption p { font-size: 15px; color: rgba(255,255,255,.78); margin-top: 8px; }
+
+    /* placeholder visual */
+    .slide-ph {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 12px;
+    }
+    .slide-ph-icon { font-size: 80px; opacity: .2; }
+    .slide-ph-label { color: rgba(255,255,255,.3); font-size: 13px; font-style: italic; }
+
+    /* Botões seta */
+    .carousel-btn {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      z-index: 10; background: rgba(255,255,255,.92);
+      border: none; border-radius: 50%; width: 46px; height: 46px;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 18px rgba(0,0,0,.22); transition: .2s;
+    }
+    .carousel-btn:hover { background: #fff; transform: translateY(-50%) scale(1.1); }
+    .carousel-btn svg { width: 20px; height: 20px; stroke: var(--azul); fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+    .carousel-btn-prev { left: 22px; }
+    .carousel-btn-next { right: 22px; }
+
+    /* Dots */
+    .carousel-dots {
+      position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%);
+      display: flex; gap: 8px; z-index: 10;
+    }
+    .dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: rgba(255,255,255,.4); cursor: pointer; transition: .3s;
+      border: none;
+    }
+    .dot.active { background: #fff; width: 26px; border-radius: 4px; }
+
+    /* Contador slide */
+    .carousel-counter {
+      position: absolute; top: 16px; right: 6%; z-index: 10;
+      font-size: 13px; font-weight: 600; color: rgba(255,255,255,.7);
+      background: rgba(0,0,0,.3); padding: 4px 12px; border-radius: 20px;
+    }
 
     /* ── STATS ── */
     .stats { background: #fff; border-bottom: 1px solid var(--cinza-bd); }
@@ -158,21 +215,15 @@
       position: relative;
     }
     .stat-item:last-child { border-right: none; }
-    /* Linha colorida acima de cada stat */
     .stat-item:nth-child(1)::before { content:''; position:absolute; top:0; left:20%; right:20%; height:3px; background:var(--azul); border-radius:0 0 4px 4px; }
     .stat-item:nth-child(2)::before { content:''; position:absolute; top:0; left:20%; right:20%; height:3px; background:var(--amarelo); border-radius:0 0 4px 4px; }
     .stat-item:nth-child(3)::before { content:''; position:absolute; top:0; left:20%; right:20%; height:3px; background:var(--vermelho); border-radius:0 0 4px 4px; }
     .stat-item:nth-child(4)::before { content:''; position:absolute; top:0; left:20%; right:20%; height:3px; background:var(--verde); border-radius:0 0 4px 4px; }
-
     .stat-item:nth-child(1) .stat-num { color: var(--azul); }
     .stat-item:nth-child(2) .stat-num { color: var(--amarelo); }
     .stat-item:nth-child(3) .stat-num { color: var(--vermelho); }
     .stat-item:nth-child(4) .stat-num { color: var(--verde); }
-
-    .stat-num {
-      font-family: 'Sora', sans-serif; font-size: 34px; font-weight: 800;
-      display: block;
-    }
+    .stat-num { font-family: 'Sora', sans-serif; font-size: 34px; font-weight: 800; display: block; }
     .stat-label { font-size: 13px; color: var(--txt2); margin-top: 5px; }
 
     /* ── SOBRE ── */
@@ -203,23 +254,23 @@
     .beneficio:nth-child(2):hover { box-shadow: 0 4px 16px rgba(245,168,0,.12); }
     .beneficio:nth-child(3) { border-left-color: var(--verde); }
     .beneficio:nth-child(3):hover { box-shadow: 0 4px 16px rgba(0,127,46,.12); }
-
+    .beneficio:nth-child(4) { border-left-color: var(--vermelho); }
+    .beneficio:nth-child(4):hover { box-shadow: 0 4px 16px rgba(232,34,34,.12); }
     .ben-icon {
       width: 42px; height: 42px; border-radius: 10px;
-      background: var(--azul-bg);
       display: flex; align-items: center; justify-content: center; flex-shrink: 0;
     }
     .beneficio:nth-child(1) .ben-icon { background: #e8f3fb; }
     .beneficio:nth-child(2) .ben-icon { background: #fef7e0; }
-    .beneficio:nth-child(3) .ben-icon { background: #e4f4eb; }
+    .beneficio:nth-child(3) .ben-icon { background: #e0f7eb; }
+    .beneficio:nth-child(4) .ben-icon { background: #f8e6e6; }
     .beneficio:nth-child(1) .ben-icon svg { stroke: var(--azul); }
     .beneficio:nth-child(2) .ben-icon svg { stroke: var(--amarelo); }
     .beneficio:nth-child(3) .ben-icon svg { stroke: var(--verde); }
-
+    .beneficio:nth-child(4) .ben-icon svg { stroke: var(--vermelho); }
     .ben-icon svg { width: 20px; height: 20px; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
     .ben-title { font-weight: 600; font-size: 14px; color: var(--txt); margin-bottom: 4px; }
     .ben-desc { font-size: 13px; color: var(--txt2); line-height: 1.55; }
-
     .sobre-visual { position: relative; }
     .card-foto {
       border-radius: 18px; overflow: hidden;
@@ -236,10 +287,7 @@
       display: flex; align-items: center; gap: 14px;
       border-left: 4px solid var(--amarelo);
     }
-    .badge-float-icon {
-      width: 40px; height: 40px; background: var(--azul-bg);
-      border-radius: 10px; display: flex; align-items: center; justify-content: center;
-    }
+    .badge-float-icon { width: 40px; height: 40px; background: var(--azul-bg); border-radius: 10px; display: flex; align-items: center; justify-content: center; }
     .badge-float-icon svg { width: 20px; height: 20px; stroke: var(--azul); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
     .badge-float strong { font-size: 20px; font-weight: 800; color: var(--azul); display: block; }
     .badge-float small { font-size: 12px; color: var(--txt2); }
@@ -258,18 +306,16 @@
       z-index: 0;
     }
     .step { text-align: center; position: relative; z-index: 1; }
-    .step:nth-child(1) .step-num { background: var(--azul);    box-shadow: 0 0 0 2px var(--azul); }
-    .step:nth-child(2) .step-num { background: var(--amarelo); box-shadow: 0 0 0 2px var(--amarelo); }
-    .step:nth-child(3) .step-num { background: var(--vermelho);box-shadow: 0 0 0 2px var(--vermelho); }
-    .step:nth-child(4) .step-num { background: var(--verde);   box-shadow: 0 0 0 2px var(--verde); }
-    .step:nth-child(5) .step-num { background: var(--azul);    box-shadow: 0 0 0 2px var(--azul); }
+    .step:nth-child(1) .step-num { background: var(--azul);     box-shadow: 0 0 0 2px var(--azul); }
+    .step:nth-child(2) .step-num { background: var(--amarelo);  box-shadow: 0 0 0 2px var(--amarelo); }
+    .step:nth-child(3) .step-num { background: var(--vermelho); box-shadow: 0 0 0 2px var(--vermelho); }
+    .step:nth-child(4) .step-num { background: var(--verde);    box-shadow: 0 0 0 2px var(--verde); }
+    .step:nth-child(5) .step-num { background: var(--azul);     box-shadow: 0 0 0 2px var(--azul); }
     .step-num {
-      width: 56px; height: 56px; border-radius: 50%;
-      color: #fff;
+      width: 56px; height: 56px; border-radius: 50%; color: #fff;
       font-family: 'Sora', sans-serif; font-size: 17px; font-weight: 800;
       display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 18px;
-      border: 4px solid #fff;
+      margin: 0 auto 18px; border: 4px solid #fff;
     }
     .step-title { font-weight: 700; font-size: 14px; color: var(--txt); margin-bottom: 8px; }
     .step-desc { font-size: 13px; color: var(--txt2); line-height: 1.6; }
@@ -278,10 +324,7 @@
     .empresas { padding: 88px 0; background: var(--cinza-f); overflow: hidden; }
     .empresas-header { padding: 0 6%; margin-bottom: 44px; }
     .logos-track { display: flex; gap: 20px; overflow: hidden; }
-    .logos-scroll {
-      display: flex; gap: 20px; flex-shrink: 0;
-      animation: ticker 32s linear infinite;
-    }
+    .logos-scroll { display: flex; gap: 20px; flex-shrink: 0; animation: ticker 32s linear infinite; }
     .logos-track:hover .logos-scroll { animation-play-state: paused; }
     @keyframes ticker { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
     .logo-item {
@@ -294,15 +337,11 @@
     }
     .logo-item:hover { border-color: var(--azul); color: var(--azul); }
 
-    /* ── CTA FINAL ── */
+    /* ── CTA ── */
     .cta-section {
-      padding: 88px 6%;
-      background: #fff;
-      text-align: center;
-      position: relative;
-      border-top: 1px solid var(--cinza-bd);
+      padding: 88px 6%; background: #fff; text-align: center;
+      position: relative; border-top: 1px solid var(--cinza-bd);
     }
-    /* Faixa colorida no topo do CTA */
     .cta-section::before {
       content: '';
       position: absolute; top: 0; left: 0; right: 0; height: 6px;
@@ -319,25 +358,19 @@
       position: absolute; bottom: 0; left: 0; right: 0; height: 5px;
       background: linear-gradient(90deg, var(--amarelo) 33%, var(--vermelho) 33% 66%, var(--verde) 66%);
     }
-    .cta-section h2 {
-      font-family: 'Sora', sans-serif; font-size: 36px; font-weight: 800;
-      color: #fff; margin-bottom: 14px;
-    }
+    .cta-section h2 { font-family: 'Sora', sans-serif; font-size: 36px; font-weight: 800; color: #fff; margin-bottom: 14px; }
     .cta-section p { color: rgba(255,255,255,.8); font-size: 16px; margin-bottom: 36px; }
     .btn-cta-white {
       background: #fff; color: var(--azul);
       padding: 15px 40px; border-radius: 8px;
-      font-weight: 700; font-size: 16px; display: inline-block;
-      transition: .2s;
+      font-weight: 700; font-size: 16px; display: inline-block; transition: .2s;
     }
     .btn-cta-white:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.2); }
 
     /* ── FOOTER ── */
     footer { background: #071526; padding: 52px 6% 0; }
-    /* Faixa colorida topo footer */
     footer::before {
-      content: '';
-      display: block; height: 5px; margin: -52px -6% 52px;
+      content: ''; display: block; height: 5px; margin: -52px -6% 52px;
       background: linear-gradient(90deg, var(--azul) 25%, var(--amarelo) 25% 50%, var(--vermelho) 50% 75%, var(--verde) 75%);
     }
     .footer-grid {
@@ -348,10 +381,7 @@
     .footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
     .footer-logo span { font-family: 'Sora', sans-serif; font-weight: 700; font-size: 16px; color: #fff; }
     .footer-brand-desc { font-size: 13px; color: rgba(255,255,255,.45); line-height: 1.75; }
-    .footer-title {
-      font-size: 12px; font-weight: 700; text-transform: uppercase;
-      letter-spacing: .1em; color: #fff; margin-bottom: 18px;
-    }
+    .footer-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: #fff; margin-bottom: 18px; }
     .footer-links { display: flex; flex-direction: column; gap: 10px; }
     .footer-links a { font-size: 14px; color: rgba(255,255,255,.5); transition: .2s; }
     .footer-links a:hover { color: var(--amarelo); }
@@ -368,8 +398,10 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
-      .hero { grid-template-columns: 1fr; padding-bottom: 48px; }
-      .hero-img { display: none; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-logo-side { display: none; }
+      .carousel-wrapper { height: 340px; }
+      .carousel-caption h3 { font-size: 20px; }
       .stats-inner { grid-template-columns: repeat(2, 1fr); }
       .stat-item:nth-child(2) { border-right: none; }
       .sobre-grid { grid-template-columns: 1fr; }
@@ -380,25 +412,25 @@
       .cta-inner { padding: 48px 28px; }
     }
     @media (max-width: 600px) {
-      .hero h1 { font-size: 30px; }
+      .hero h1 { font-size: 28px; }
       .section-title { font-size: 26px; }
       .stats-inner { grid-template-columns: 1fr 1fr; }
       .steps { grid-template-columns: 1fr; }
       .nav-links { display: none; }
+      .carousel-wrapper { height: 260px; }
     }
   </style>
 </head>
 <body>
 
-<!-- ── NAVBAR ── -->
+<!-- ── 1. NAVBAR ── -->
 <nav>
   <a href="/" class="nav-logo">
     <div class="nav-logo-icon">
       <img src="https://i.postimg.cc/RJMN3qmG/LOGO-EDUCA.png" alt="LOGO EDUCA" />
     </div>
-    <span>Programa Educação Integral PB</span>
+    <span>Programa Educação Cidadã Integral</span>
   </a>
-
   <div class="nav-links">
     <div class="nav-dropdown">
       <span>GEECT</span>
@@ -427,24 +459,98 @@
   </div>
 </nav>
 
-<!-- ── HERO ── -->
+<!-- ── 2. HERO ── -->
 <section class="hero">
   <div class="hero-content">
     <div class="hero-badge">Inscrições abertas 2026</div>
-    <h1>Bem-vindo ao programa de <span>Educação Integral da Paraíba</span></h1>
+    <h1>Bem-vindo ao programa de <span>Educação Cidadã Integral da Paraíba</span></h1>
     <p class="hero-sub">O programa do Governo da Paraíba que conecta estudantes ao mercado de trabalho. Bolsa, transporte e seguro — tudo pago pelo Estado.</p>
   </div>
-  <div class="hero-img">
-    <div class="hero-img-placeholder">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/>
-      </svg>
-      <span>Estudantes do programa</span>
-    </div>
+  <div class="hero-logo-side">
+    <img src="https://i.postimg.cc/RJMN3qmG/LOGO-EDUCA.png" alt="Logo decorativo" />
   </div>
 </section>
 
-<!-- ── STATS ── -->
+<!-- ── 3. CARROSSEL ── -->
+<section class="carousel-section">
+  <div class="carousel-wrapper" id="carousel">
+
+    <div class="carousel-track" id="carouselTrack">
+
+      <!-- Slide 1 – Nossas Escolas -->
+      <div class="carousel-slide">
+        <img src="https://primeirachance.see.pb.gov.br/assets/banner_principal_2-69d5477d.jpg" alt="Banner Principal" style="width: 100%; height: 100%; object-fit: cover;" />
+        <div class="carousel-caption">
+          <div class="carousel-caption-tag">Nossas Escolas</div>
+          <h3>Infraestrutura de qualidade para o aprendizado</h3>
+          <p>Escolas modernas presentes nos 223 municípios da Paraíba</p>
+        </div>
+      </div>
+
+      <!-- Slide 2 – Nossos Educadores -->
+      <div class="carousel-slide">
+        <div class="slide-ph">
+          <div class="slide-ph-icon">👩‍🏫</div>
+          <div class="slide-ph-label">Adicione uma imagem via &lt;img src="..."&gt;</div>
+        </div>
+        <div class="carousel-caption">
+          <div class="carousel-caption-tag">Nossos Educadores</div>
+          <h3>Professores dedicados formando o futuro</h3>
+          <p>Equipe capacitada e comprometida com a educação integral</p>
+        </div>
+      </div>
+
+      <!-- Slide 3 – Nossos Estudantes -->
+      <div class="carousel-slide">
+        <div class="slide-ph">
+          <div class="slide-ph-icon">🎓</div>
+          <div class="slide-ph-label">Adicione uma imagem via &lt;img src="..."&gt;</div>
+        </div>
+        <div class="carousel-caption">
+          <div class="carousel-caption-tag">Nossos Estudantes</div>
+          <h3>Jovens paraibanos construindo seu futuro</h3>
+          <p>Mais de 12.000 estudantes beneficiados pelo programa</p>
+        </div>
+      </div>
+
+      <!-- Slide 4 – Parceiros -->
+      <div class="carousel-slide">
+        <div class="slide-ph">
+          <div class="slide-ph-icon">🤝</div>
+          <div class="slide-ph-label">Adicione uma imagem via &lt;img src="..."&gt;</div>
+        </div>
+        <div class="carousel-caption">
+          <div class="carousel-caption-tag">Parceiros</div>
+          <h3>Empresas que acreditam no talento paraibano</h3>
+          <p>Mais de 2.000 empresas parceiras em toda a Paraíba</p>
+        </div>
+      </div>
+
+    </div><!-- /track -->
+
+    <!-- Setas -->
+    <button class="carousel-btn carousel-btn-prev" id="prevBtn" aria-label="Anterior">
+      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <button class="carousel-btn carousel-btn-next" id="nextBtn" aria-label="Próximo">
+      <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+
+    <!-- Contador -->
+    <div class="carousel-counter" id="carouselCounter">1 / 4</div>
+
+    <!-- Dots -->
+    <div class="carousel-dots" id="carouselDots">
+      <button class="dot active" data-index="0" aria-label="Slide 1"></button>
+      <button class="dot" data-index="1" aria-label="Slide 2"></button>
+      <button class="dot" data-index="2" aria-label="Slide 3"></button>
+      <button class="dot" data-index="3" aria-label="Slide 4"></button>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── 4. STATS ── -->
 <section class="stats">
   <div class="stats-inner">
     <div class="stat-item">
@@ -466,7 +572,7 @@
   </div>
 </section>
 
-<!-- ── SOBRE ── -->
+<!-- ── 5. SOBRE ── -->
 <section class="sobre" id="sobre">
   <div class="sobre-grid">
     <div>
@@ -481,8 +587,7 @@
             <svg viewBox="0 0 24 24"><path d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z"/></svg>
           </div>
           <div>
-            <div class="ben-title">Bolsa de estágio</div>
-            <div class="ben-desc">No valor de R$ 600,00, paga integralmente pelo Governo do Estado da Paraíba</div>
+            <div class="ben-title">Escola Cidadã Integral (ECI)</div>
           </div>
         </div>
         <div class="beneficio">
@@ -490,8 +595,7 @@
             <svg viewBox="0 0 24 24"><path d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12"/></svg>
           </div>
           <div>
-            <div class="ben-title">Auxílio-transporte</div>
-            <div class="ben-desc">No valor de R$ 120,00, assegurando o deslocamento de ida e volta do estágio</div>
+            <div class="ben-title">Escola Cidadã Integral Técnica (ECIT)</div>
           </div>
         </div>
         <div class="beneficio">
@@ -499,13 +603,19 @@
             <svg viewBox="0 0 24 24"><path d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
           </div>
           <div>
-            <div class="ben-title">Seguro garantido</div>
-            <div class="ben-desc">Proteção contra acidentes pessoais durante o estágio</div>
+            <div class="ben-title">Escola Cidadã Integral Indígena (ECII)</div>
+          </div>
+        </div>
+        <div class="beneficio">
+          <div class="ben-icon">
+            <svg viewBox="0 0 24 24"><path d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
+          </div>
+          <div>
+            <div class="ben-title">Escola Cidadã Integral Socioeducativa (ECIS)</div>
           </div>
         </div>
       </div>
     </div>
-
     <div class="sobre-visual">
       <div class="card-foto">
         <div class="card-foto-ph">
@@ -526,7 +636,7 @@
   </div>
 </section>
 
-<!-- ── FOOTER ── -->
+<!-- ── 9. FOOTER ── -->
 <footer>
   <div class="footer-grid">
     <div>
@@ -536,7 +646,6 @@
       </div>
       <p class="footer-brand-desc">Programa do Governo da Paraíba — conectando estudantes ao mercado de trabalho e promovendo educação integral.</p>
     </div>
-
     <div>
       <div class="footer-title">Links úteis</div>
       <div class="footer-links">
@@ -547,7 +656,6 @@
         <a href="/certificados/estudantes/validar">Validar Certificado</a>
       </div>
     </div>
-
     <div>
       <div class="footer-title">Contato</div>
       <div class="footer-contact">
@@ -560,12 +668,53 @@
       </div>
     </div>
   </div>
-
   <div class="footer-bottom">
     <p>Copyright © 2026, Secretaria de Estado da Educação — Paraíba</p>
     <span>Governo da Paraíba</span>
   </div>
 </footer>
 
+<script>
+  const track   = document.getElementById('carouselTrack');
+  const dots    = document.querySelectorAll('.dot');
+  const counter = document.getElementById('carouselCounter');
+  const TOTAL   = 4;
+  let current   = 0;
+  let timer;
+
+  function goTo(index) {
+    current = ((index % TOTAL) + TOTAL) % TOTAL;
+    track.style.transform = `translateX(-${current * 100}%)`;
+    dots.forEach((d, i) => d.classList.toggle('active', i === current));
+    counter.textContent = `${current + 1} / ${TOTAL}`;
+  }
+
+  function next() { goTo(current + 1); }
+  function prev() { goTo(current - 1); }
+
+  function startAuto() {
+    clearInterval(timer);
+    timer = setInterval(next, 5000);
+  }
+
+  document.getElementById('nextBtn').addEventListener('click', () => { next(); startAuto(); });
+  document.getElementById('prevBtn').addEventListener('click', () => { prev(); startAuto(); });
+  dots.forEach(d => d.addEventListener('click', () => { goTo(+d.dataset.index); startAuto(); }));
+
+  // Pause on hover
+  const wrapper = document.getElementById('carousel');
+  wrapper.addEventListener('mouseenter', () => clearInterval(timer));
+  wrapper.addEventListener('mouseleave', startAuto);
+
+  // Swipe support
+  let startX = 0;
+  wrapper.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+  wrapper.addEventListener('touchend', e => {
+    const diff = startX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) { diff > 0 ? next() : prev(); startAuto(); }
+  }, { passive: true });
+
+  startAuto();
+</script>
 </body>
 </html>
